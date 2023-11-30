@@ -183,7 +183,7 @@ docker run -it \
     -v "$(pwd)"/main_logs:/app/main_logs \  
     -v "$(pwd)"/proxy_logs:/app/proxy_logs \  
     -v "$(pwd)"/keys:/root/.android \  
-    fushin/wbupowerapi:1.1-arm
+    fushin/wbupowerapi:1.1-arm64
 ```
 8. 挂载自动任务，`快速开始-手动`一致，命令替换成上面运行Docker镜像的命令即可
 
