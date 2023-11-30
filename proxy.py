@@ -1,7 +1,9 @@
 import re
-import configmanager
-from mitmproxy import http
+
 from loguru import logger
+from mitmproxy import http
+
+import configmanager
 
 # 目标网站
 target_url = "yktyd.wbu.edu.cn"

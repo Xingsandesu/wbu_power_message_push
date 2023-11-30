@@ -1,16 +1,17 @@
-import requests
+import multiprocessing
 import os
 import sys
-import yaml
 import time
-import multiprocessing
+from datetime import datetime
+
+import requests
+import yaml
+from loguru import logger
+from mitmproxy.tools.main import mitmdump
+
 import configmanager
 from configmanager import ConfigManager
 from wxpush import WeChatPush
-from loguru import logger
-from datetime import datetime
-from mitmproxy.tools.main import mitmdump
-
 
 
 @logger.catch
