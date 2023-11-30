@@ -155,7 +155,7 @@ WBUPower:
 
 X86
 ```
-docker run -it \  
+docker run -itd \  
     --privileged \  
     --network bridge \  
     --rm \  
@@ -171,7 +171,7 @@ docker run -it \
 ```
 Arm64
 ```
-docker run -it \  
+docker run -itd \  
     --privileged \  
     --network bridge \  
     --rm \  
