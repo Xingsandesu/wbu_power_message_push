@@ -8,7 +8,7 @@
 也没啥好说的，就是突发奇想爬了下交电费的网页，不得不说这个系统做的就是（史），企业微信缴费还得复制到微信上调用微信的支付Api，一堆新生电费都不知道怎么交！，而且没电费了也没啥提醒，每次没电费了就突然断电，更（史）了 !!!
 PS：目前版本只支持北区查询，具体原因看下面原理
 
-Update：2023/11/10 
+Update：2023/11/30 
 
 
 [Docker镜像](https://hub.docker.com/repository/docker/fushin/wbupowerapi) 
@@ -151,7 +151,7 @@ WBUPower:
   Cookies:  
     JSESSIONID: 这里不用填，留空自动获取
 ```
-7. 连接手机在电脑或者其他设备上，运行Docker镜像
+6. 连接手机在电脑或者其他设备上，运行Docker镜像
 
 X86
 ```
@@ -185,7 +185,7 @@ docker run -it \
     -v "$(pwd)"/keys:/root/.android \  
     fushin/wbupowerapi:1.1-arm64
 ```
-8. 挂载自动任务，`快速开始-手动`一致，命令替换成上面运行Docker镜像的命令即可
+7. 挂载自动任务，`快速开始-手动`一致，命令替换成上面运行Docker镜像的命令即可
 
 ## 快速开始-手动
 
