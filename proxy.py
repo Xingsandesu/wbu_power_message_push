@@ -11,7 +11,6 @@ target_url = "yktyd.wbu.edu.cn"
 target_url_pattern = re.compile(r'http://yktyd\.wbu\.edu\.cn/wechat/home/index\.html\?.*')
 
 
-
 @logger.catch
 def update_jsessionid_in_config(jsessionid_value):
     try:
