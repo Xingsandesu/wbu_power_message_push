@@ -185,7 +185,7 @@ docker run -itd \
     -v "$(pwd)"/keys:/root/.android \  
     fushin/wbupowerapi:1.1-arm64
 ```
-7. 挂载自动任务，`快速开始-手动`一致，命令替换成上面运行Docker镜像的命令即可
+7. 挂载自动任务，`快速开始-手动`一致，命令替换成`sh run-XXX.sh`，XXX是架构名，使用`run.sh`之前首先先编辑脚本设置启动位置
 
 ## 快速开始-手动
 
