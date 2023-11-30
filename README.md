@@ -6,10 +6,11 @@
 ## 简介
 
 也没啥好说的，就是突发奇想爬了下交电费的网页，不得不说这个系统做的就是（史），企业微信缴费还得复制到微信上调用微信的支付Api，一堆新生电费都不知道怎么交！，而且没电费了也没啥提醒，每次没电费了就突然断电，更（史）了 !!!
-PS：目前版本只支持北区查询，具体原因看下面原理
-Update：2023/11/10
-[Docker镜像](https://hub.docker.com/repository/docker/fushin/wbupowerapi)
-[Github链接](https://github.com/Xingsandesu/wbu_power_message_push)
+PS：目前版本只支持北区查询，具体原因看下面原理 /n
+
+Update：2023/11/10 /n
+[Docker镜像](https://hub.docker.com/repository/docker/fushin/wbupowerapi) /n
+[Github链接](https://github.com/Xingsandesu/wbu_power_message_push) /n
 
 ## 原理
 
