@@ -153,6 +153,7 @@ WBUPower:
 ```
 7. 连接手机在电脑或者其他设备上，运行Docker镜像
 
+X86
 ```
 docker run -it \  
     --privileged \  
@@ -168,7 +169,22 @@ docker run -it \
     -v "$(pwd)"/keys:/root/.android \  
     fushin/wbupowerapi:1.1
 ```
-
+Arm64
+```
+docker run -it \  
+    --privileged \  
+    --network bridge \  
+    --rm \  
+    --name power \  
+    -p 8080:8080 \  
+    -v "$(pwd)"/config.yaml:/app/config.yaml \  
+    -v "$(pwd)"/.power.yaml:/app/.power.yaml \  
+    -v "$(pwd)"/adb_logs:/app/adb_logs \  
+    -v "$(pwd)"/main_logs:/app/main_logs \  
+    -v "$(pwd)"/proxy_logs:/app/proxy_logs \  
+    -v "$(pwd)"/keys:/root/.android \  
+    fushin/wbupowerapi:1.1-arm
+```
 8. 挂载自动任务，`快速开始-手动`一致，命令替换成上面运行Docker镜像的命令即可
 
 ## 快速开始-手动
