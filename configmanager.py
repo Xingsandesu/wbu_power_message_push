@@ -21,7 +21,10 @@ class ConfigManager:
                 'Agentid': r'企业微信 Agentid',
                 'Building': r'观湖苑X栋',
                 'Roomid': r'房间号,例如222',
-                'Cookies': {'JSESSIONID': '这里填写提取的cookies'},
+                'adbinputone': 'adb shell input tap 730 1962',
+                'adbinputtwo': 'adb shell input tap 415 555',
+                'hostip': '填运行脚本的ip',
+                'Cookies': {'JSESSIONID': ''},
             }
         }
 
