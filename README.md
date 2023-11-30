@@ -7,6 +7,9 @@
 
 也没啥好说的，就是突发奇想爬了下交电费的网页，不得不说这个系统做的就是（史），企业微信缴费还得复制到微信上调用微信的支付Api，一堆新生电费都不知道怎么交！，而且没电费了也没啥提醒，每次没电费了就突然断电，更（史）了 !!!
 PS：目前版本只支持北区查询，具体原因看下面原理
+Update：2023/11/10
+[Docker镜像](https://hub.docker.com/repository/docker/fushin/wbupowerapi)
+[Github链接](https://github.com/Xingsandesu/wbu_power_message_push)
 
 ## 原理
 
@@ -86,7 +89,7 @@ room={"room":"","roomid":"520"}
 2. 打开缴电费页面
 3. 点击左上角三个点，选择复制链接
 4. 把链接复制到电脑上，使用Chrome打开
-5. 打开后按F12进入开发者模式，选择应用-存储-Cookie-http://yktyd.wbu.edu.cn 就可以看到对应的Cookies
+5. 打开后按F12进入开发者模式，选择应用-存储-Cookie-http://yktyd.wbu.edu.cn就可以看到对应的Cookies
 6. 获取到`JSESSIONID`的值填入`config.yaml`对应位置即可
 ![image.png](https://cdn.jsdelivr.net/gh/Xingsandesu/kookoo-picbed/img/2023%2F11%2F28%2F20231128194143_19-41-45.png)
 
@@ -98,9 +101,72 @@ room={"room":"","roomid":"520"}
 | 查电费       | 构建GET请求查询API                        |
 | 电费记录     | 使用.power.yaml记录每次查询的电费并且对比 |
 | 企业微信推送 | 电费信息通过企业微信推送                  |
-| 断电提醒             |   每次电费快用完时会提醒用户                                        |
+| 断电提醒     | 每次电费快用完时会提醒用户                |
+| 自动抓包     | 自动抓取cookies                           |
+| adb自动运行  | 自动运行企业微信进行抓包                  |
+| docker部署             | 提供打包了运行环境的镜像                                          |
 
-## 快速开始
+## 快速开始-自动
+- 你需要事先安装`Docker`
+- 你需要一台没有密码的安卓手机, 安装好企业微信并且登录，开启开发者选项-USB调试
+- 本次使用的系统为Debian Arm64
+- 运行在Docker环境中
+- 注意，请确保 `8080` 端口没有被使用
+---
+  
+1. 在手机上打开`开发者选项-USB调试`，`指针位置`
+2. 手动打开一次企业微信，记录企业微信主页面的`工作台`的`x，y坐标`，然后点击工作台，记录工作台页面的`校园一卡通`的`x，y坐标`
+3. 记录运行的ip地址
+4. 创建文件夹，保存程序运行的logs与配置
+
+```
+mkdir power && cd power
+```
+
+5. 创建配置文件，并且填写相关配置
+
+```
+touch config.yaml && touch .power.yaml
+```
+
+```
+vim config.yaml
+```
+
+``` config.yaml
+WBUPower:  
+  Corp_id: 企业微信 Corp_id  
+  Corp_secret: 企业微信 Corp_secret  
+  Agentid: 企业微信 Agentid  
+  Building: 观湖苑X栋  
+  Roomid: 房间号,例如222  
+  adbinputone: adb shell input tap 工作台x轴坐标 工作台y轴坐标 
+  adbinputtwo: adb shell input tap 校园一卡通x轴坐标 校园一卡通y轴坐标  
+  hostip: 填运行脚本主机的ip，请确保主机与手机可以通讯  
+  Cookies:  
+    JSESSIONID: 这里不用填，留空自动获取
+```
+7. 连接手机在电脑或者其他设备上，运行Docker镜像
+
+```
+docker run -it \  
+    --privileged \  
+    --network bridge \  
+    --rm \  
+    --name power \  
+    -p 8080:8080 \  
+    -v "$(pwd)"/config.yaml:/app/config.yaml \  
+    -v "$(pwd)"/.power.yaml:/app/.power.yaml \  
+    -v "$(pwd)"/adb_logs:/app/adb_logs \  
+    -v "$(pwd)"/main_logs:/app/main_logs \  
+    -v "$(pwd)"/proxy_logs:/app/proxy_logs \  
+    -v "$(pwd)"/keys:/root/.android \  
+    fushin/wbupowerapi:1.1
+```
+
+8. 挂载自动任务，`快速开始-手动`一致，命令替换成上面运行Docker镜像的命令即可
+
+## 快速开始-手动
 
 你需要事先安装`python3.10`
 本文使用的系统为Debian，Windows系统请使用计划任务运行即可
@@ -112,7 +178,7 @@ mkdir wbupower & cd wbupower
 ```
 
 ```
-wget https://github.com/Xingsandesu/wbu_power_message_push/archive/refs/heads/main.zip
+wget https://github.com/Xingsandesu/wbu_power_message_push/archive/refs/tags/1.0.zip
 ```
 
 ```
@@ -183,5 +249,5 @@ crontab -e
 
 ---
 <p align="right">By KooKoo</p>
-<p align="right">Date :  2023 / 11 / 28
+<p align="right">Date :  2023 / 11 / 30
 </p>
