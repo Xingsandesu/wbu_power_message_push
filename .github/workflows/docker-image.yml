@@ -21,8 +21,8 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_LOGIN }}
-          password: ${{ secrets.DOCKER_PASSWD }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build and push
         id: docker_build
@@ -33,5 +33,6 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            fushin/wbupowerapi:${{ github.ref_name }}
-            fushin/wbupowerapi:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/wbupowerapi:${{ github.ref_name }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/wbupowerapi:latest
+      
