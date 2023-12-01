@@ -132,7 +132,13 @@ def read_power_balance():
     if os.path.exists('.power.yaml'):
         with open('.power.yaml', 'r') as file:
             power_data = yaml.safe_load(file)
+
+        if power_data is not None:
             return power_data.get('balance', 0)
+        else:
+            # 处理 power_data 为 None 的情况，可能需要返回默认值或者抛出异常
+            logger.warning(".power.yaml 文件中未找到有效数据")
+            return 0
     else:
         # 如果文件不存在
         logger.info("首次运行,不计算用量")
