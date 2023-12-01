@@ -8,7 +8,7 @@
 也没啥好说的，就是突发奇想爬了下交电费的网页，不得不说这个系统做的就是（史），企业微信缴费还得复制到微信上调用微信的支付Api，一堆新生电费都不知道怎么交！，而且没电费了也没啥提醒，每次没电费了就突然断电，更（史）了 !!!
 PS：目前版本只支持北区查询，具体原因看下面原理
 
-Update：2023/11/30 
+Update：2023/12/1
 
 
 [Docker镜像](https://hub.docker.com/repository/docker/fushin/wbupowerapi) 
@@ -151,9 +151,8 @@ WBUPower:
   Cookies:  
     JSESSIONID: 这里不用填，留空自动获取
 ```
-6. 连接手机在电脑或者其他设备上，运行Docker镜像
+6. 连接手机在电脑或者其他设备上，运行Docker镜像(支持AMD64, ARM64)
 
-X86
 ```
 docker run -itd \  
     --privileged \  
@@ -167,25 +166,10 @@ docker run -itd \
     -v "$(pwd)"/main_logs:/app/main_logs \  
     -v "$(pwd)"/proxy_logs:/app/proxy_logs \  
     -v "$(pwd)"/keys:/root/.android \  
-    fushin/wbupowerapi:1.1
+    fushin/wbupowerapi
 ```
-Arm64
-```
-docker run -itd \  
-    --privileged \  
-    --network bridge \  
-    --rm \  
-    --name power \  
-    -p 8080:8080 \  
-    -v "$(pwd)"/config.yaml:/app/config.yaml \  
-    -v "$(pwd)"/.power.yaml:/app/.power.yaml \  
-    -v "$(pwd)"/adb_logs:/app/adb_logs \  
-    -v "$(pwd)"/main_logs:/app/main_logs \  
-    -v "$(pwd)"/proxy_logs:/app/proxy_logs \  
-    -v "$(pwd)"/keys:/root/.android \  
-    fushin/wbupowerapi:1.1-arm64
-```
-7. 挂载自动任务，`快速开始-手动`一致，命令替换成`sh run-XXX.sh`，XXX是架构名，使用`run.sh`之前首先先编辑脚本设置启动位置
+
+7. 挂载自动任务，`快速开始-手动`一致，命令替换成`sh run.sh`，使用`run.sh`之前首先先编辑脚本设置启动位置
 
 ## 快速开始-手动
 

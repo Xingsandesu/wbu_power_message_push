@@ -26,6 +26,7 @@ class ConfigManager:
                 'adbinputtwo': 'adb shell input tap 415 555',
                 'hostip': '填运行脚本的ip',
                 'Cookies': {'JSESSIONID': ''},
+                'Url': ''
             }
         }
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 设置工作目录
-target_directory="/home/linaro/wbu_power_api_runtime"
+target_directory=""
 
 # 切换到目标目录
 cd "$target_directory"
@@ -18,4 +18,4 @@ docker run -itd \
     -v "$(pwd)"/main_logs:/app/main_logs \
     -v "$(pwd)"/proxy_logs:/app/proxy_logs \
     -v "$(pwd)"/keys:/root/.android \
-    fushin/wbupowerapi:1.1-arm64
+    fushin/wbupowerapi

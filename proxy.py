@@ -3,7 +3,7 @@ import re
 from loguru import logger
 from mitmproxy import http
 
-import configmanager
+import configmanager\
 
 # 目标网站
 target_url = "yktyd.wbu.edu.cn"
@@ -12,12 +12,13 @@ target_url_pattern = re.compile(r'http://yktyd\.wbu\.edu\.cn/wechat/home/index\.
 
 
 @logger.catch
-def update_jsessionid_in_config(jsessionid_value):
+def update_config(jsessionid_value, url_value):
     try:
         config = configmanager.ConfigManager.load_config()
 
         # 更新 JSESSIONID 值
         config['WBUPower']['Cookies']['JSESSIONID'] = jsessionid_value
+        config['WBUPower']['Cookies']['Url'] = url_value
 
         # 写回配置文件
         configmanager.ConfigManager.save_config(config)
@@ -82,8 +83,8 @@ def request(flow: http.HTTPFlow) -> None:
                 # 输出到控制台
                 logger.info(f"获取到的 JSESSIONID: {jsessionid_value}")
 
-                # 更新配置文件中的 JSESSIONID 值
-                update_jsessionid_in_config(jsessionid_value)
+                # 更新配置文件
+                update_config(jsessionid_value, request_url)
 
 
 # 启动 mitmproxy

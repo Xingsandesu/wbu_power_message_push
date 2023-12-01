@@ -53,6 +53,7 @@ def main():
         corpid = config['WBUPower']['Corp_id']
         agentid = config['WBUPower']['Agentid']
         corpsecret = config['WBUPower']['Corp_secret']
+        url = config['WBUPower']['url']
     except NameError:
         logger.error("请检查配置文件，确认相关信息是否正确")
 
@@ -114,6 +115,7 @@ def main():
                 f"{building_number}-{room_number}:账户余额: {balance} 元,警告：账户余额低于3元！请尽快充值以免断电！")
             wechat_push.send_text_message(
                 f"{building_number}-{room_number}:账户余额: {balance} 元,警告：账户余额低于3元！请尽快充值以免断电！")
+            wechat_push.send_text_message(f"充值链接:{url}")
         else:
             logger.info(f"{building_number}-{room_number}:账户余额: {balance} 元")
             wechat_push.send_text_message(f"{building_number}-{room_number}:账户余额: {balance} 元")

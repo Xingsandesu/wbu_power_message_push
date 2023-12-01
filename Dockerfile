@@ -16,9 +16,7 @@ COPY . /app
 
 # 安装依赖
 
-RUN pip install -i https://mirrors.aliyun.com/pypi/simple/ pip -U && \
-    pip config set global.index-url https://mirrors.aliyun.com/pypi/simple/ && \
-    pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 
 # 入口命令
