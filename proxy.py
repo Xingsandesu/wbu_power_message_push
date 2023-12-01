@@ -18,7 +18,7 @@ def update_config(jsessionid_value, url_value):
 
         # 更新 JSESSIONID 值
         config['WBUPower']['Cookies']['JSESSIONID'] = jsessionid_value
-        config['WBUPower']['Cookies']['Url'] = url_value
+        config['WBUPower']['Url'] = url_value
 
         # 写回配置文件
         configmanager.ConfigManager.save_config(config)

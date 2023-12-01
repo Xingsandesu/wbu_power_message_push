@@ -53,7 +53,7 @@ def main():
         corpid = config['WBUPower']['Corp_id']
         agentid = config['WBUPower']['Agentid']
         corpsecret = config['WBUPower']['Corp_secret']
-        url = config['WBUPower']['url']
+        url = config['WBUPower']['Url']
     except NameError:
         logger.error("请检查配置文件，确认相关信息是否正确")
 
