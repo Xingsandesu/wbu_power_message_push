@@ -2,6 +2,7 @@
 武汉商学院电费查询
 
 ---
+# 已通知负责一卡通的工程师，不知道该方法还能存在多久，且用且珍惜
 
 ## 简介
 
@@ -124,17 +125,17 @@ room={"room":"","roomid":"520"}
 3. 记录运行的ip地址
 4. 创建文件夹，保存程序运行的logs与配置
 
-```
+``` shell
 mkdir power && cd power
 ```
 
 5. 创建配置文件，并且填写相关配置
 
-```
+``` shell
 touch config.yaml && touch .power.yaml
 ```
 
-```
+``` shell
 vim config.yaml
 ```
 
@@ -150,10 +151,11 @@ WBUPower:
   hostip: 填运行脚本主机的ip，请确保主机与手机可以通讯  
   Cookies:  
     JSESSIONID: 这里不用填，留空自动获取
+  Url: 这里不用填，留空自动获取
 ```
 6. 连接手机在电脑或者其他设备上，运行Docker镜像(支持AMD64, ARM64)
 
-```
+``` shell
 docker run -itd \  
     --privileged \  
     --network bridge \  
@@ -254,5 +256,5 @@ crontab -e
 
 ---
 <p align="right">By KooKoo</p>
-<p align="right">Date :  2023 / 11 / 30
+<p align="right">Date :  2023 / 12 / 1
 </p>

@@ -19,11 +19,11 @@ def main():
     log_folder = "main_logs"
     os.makedirs(log_folder, exist_ok=True)
     logger.add(os.path.join(log_folder, "main_{time}.log"), enqueue=True)
-    ver = '1.1'
+    ver = '1.2.2'
 
     logger.info('--------------------')
     logger.info('Copyright (C) 2023 kodesu, Inc. All Rights Reserved ')
-    logger.info('Date    : 2023-11')
+    logger.info('Date    : 2023-12')
     logger.info('Author  : kodesu')
     logger.info('Blog    : https://kookoo.top')
     logger.info('Github  : https://github.com/Xingsandesu/wbu_power_message_push')
